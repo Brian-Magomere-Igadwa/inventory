@@ -34,6 +34,8 @@ import com.example.inventory.ui.item.ItemEntryViewModel
 object AppViewModelProvider {
     val Factory = viewModelFactory {
         // Initializer for ItemEditViewModel
+        // Without SavedStateHandle when the process is killed you'd loose all data in the viewModel
+        //it's really just a map containing our state for us faithfully through all conditions
         initializer {
             ItemEditViewModel(
                 this.createSavedStateHandle()
@@ -41,7 +43,7 @@ object AppViewModelProvider {
         }
         // Initializer for ItemEntryViewModel
         initializer {
-            ItemEntryViewModel()
+            ItemEntryViewModel(inventoryApplication().container.itemsRepository)
         }
 
         // Initializer for ItemDetailsViewModel
