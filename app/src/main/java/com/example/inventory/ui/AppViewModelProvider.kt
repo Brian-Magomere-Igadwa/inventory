@@ -38,7 +38,8 @@ object AppViewModelProvider {
         //it's really just a map containing our state for us faithfully through all conditions
         initializer {
             ItemEditViewModel(
-                this.createSavedStateHandle()
+                this.createSavedStateHandle(),
+                inventoryApplication().container.itemsRepository
             )
         }
         // Initializer for ItemEntryViewModel
